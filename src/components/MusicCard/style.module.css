@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  padding: 0.5em;
+  border: 1px solid rgb(221, 221, 221);
+  margin: 1em 1em 0 1em;
+}
+.imageContainer {
+  width: 150px;
+  height: 150px;
+}
+.albumArt {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 1em;
+}
+.title {
+  cursor: pointer;
+  margin: 0;
+  font-size: 1.2em;
+}
+.albumText {
+  cursor: pointer;
+  margin-top: 0.5em;
+}
