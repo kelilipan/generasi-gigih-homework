@@ -9,7 +9,7 @@ const MusicCard = ({ data }) => {
     const isLast = idx === artists.length - 1;
     const text = isLast ? artist.name : artist.name + ",";
     return (
-      <Link href={artist.external_urls.spotify} key={idx}>
+      <Link href={artist.external_urls.spotify} key={artist.id}>
         {text}
       </Link>
     );
