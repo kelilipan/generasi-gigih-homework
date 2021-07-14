@@ -1,4 +1,4 @@
-import MusicCard from "./components/MusicCard";
+import MusicCard from "./components/music-card";
 import data from "./data/playlist";
 function App() {
   return (

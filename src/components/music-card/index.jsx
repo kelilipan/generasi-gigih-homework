@@ -1,5 +1,5 @@
-import Button from "../Button";
-import Link from "../Link";
+import Button from "../button";
+import Link from "../link";
 import style from "./style.module.css";
 const MusicCard = ({ data }) => {
   const { album, artists, external_urls, name } = data;
