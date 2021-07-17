@@ -37,7 +37,7 @@ const MusicCard = ({ data }) => {
         <div>
           <Button
             onClick={() => {
-              console.log("nice");
+              alert(data.id);
             }}
           >
             Select
