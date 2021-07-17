@@ -1,12 +1,10 @@
-import MusicCard from "./components/music-card";
+import Playlist from "./components/playlist";
 import data from "./data/playlist";
 function App() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Create playlist</h1>
-      <div className="playlistContainer">
-        <MusicCard data={data} />
-      </div>
+      <Playlist data={data} />
     </div>
   );
 }
