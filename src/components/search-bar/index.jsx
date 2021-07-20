@@ -12,7 +12,7 @@ const SearchBar = ({ handleSearch }) => {
     <div className={style.searchContainer}>
       <form onSubmit={onSubmit}>
         <input
-          name="query"
+          name="song"
           className={style.input}
           placeholder="Input song name"
           value={query}

@@ -14,7 +14,7 @@ const Index = () => {
     const payload = callback();
     if (payload) {
       setAuth(payload);
-      getProfile(auth.access_token).then((res) => {
+      getProfile(payload.access_token).then((res) => {
         setUserData(res);
       });
     }
