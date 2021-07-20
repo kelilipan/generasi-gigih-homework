@@ -20,7 +20,7 @@ const MusicCard = ({ data }) => {
         <Link href={album.external_urls.spotify}>
           <img
             className={style.albumArt}
-            src={album.images[0].url}
+            src={album.images[1].url}
             alt={album.name}
           />
         </Link>
