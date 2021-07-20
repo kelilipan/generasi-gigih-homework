@@ -5,8 +5,8 @@ const Main = ({ children, style }) => {
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
-        paddingTop: "50px",
         padding: "1em",
+        paddingTop: "65px",
         ...style,
       }}
     >

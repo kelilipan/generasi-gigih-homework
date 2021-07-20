@@ -1,5 +1,5 @@
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const REDIRECT_URL = process.env.REACT_APP_SPOTIFY_BASE_URL;
+const REDIRECT_URL = process.env.REACT_APP_BASE_URL;
 const generateRandomString = (length) => {
   let result = "";
   let characters =

@@ -1,6 +1,12 @@
+import Navbar from "./components/navbar";
 import Index from "./pages/index";
 function App() {
-  return <Index />;
+  return (
+    <>
+      <Navbar />
+      <Index />
+    </>
+  );
 }
 
 export default App;

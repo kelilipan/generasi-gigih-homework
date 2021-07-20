@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { callback } from "../lib/auth";
 import Playlist from "../components/playlist";
 import data from "../data/playlist";
 import Main from "../layout/main";
 
 const Index = () => {
+  const { auth, setAuth } = useState(false);
   useEffect(() => {
-    callback();
+    const payload = callback();
+    if (payload) {
+      setAuth(payload);
+    }
   }, []);
   return (
     <Main>

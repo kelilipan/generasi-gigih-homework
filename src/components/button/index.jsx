@@ -1,8 +1,8 @@
 import style from "./style.module.css";
-const Button = ({ children, ...props }) => {
+const Button = ({ leftIcon, children, ...props }) => {
   return (
     <button className={style.btn} {...props}>
-      {children}
+      {leftIcon} {children}
     </button>
   );
 };
