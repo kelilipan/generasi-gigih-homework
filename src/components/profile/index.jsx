@@ -1,7 +1,6 @@
 import Link from "../link";
 import style from "./style.module.css";
 const Profile = ({ userData }) => {
-  console.log(userData);
   const isLoading = userData.display_name === undefined;
   const { external_urls, display_name, images } = userData;
   return isLoading ? (
