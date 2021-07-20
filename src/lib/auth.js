@@ -14,7 +14,7 @@ const generateRandomString = (length) => {
 //function to redirect to spotify login API
 
 const redirect = () => {
-  const scope = "user-read-private user-read-email";
+  const scope = "user-read-private playlist-modify-private user-read-email";
   const state = generateRandomString(16);
   let url = "https://accounts.spotify.com/authorize";
   url += "?response_type=token";
