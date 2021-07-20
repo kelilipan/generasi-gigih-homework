@@ -6,7 +6,7 @@ const SearchBar = ({ handleSearch }) => {
   const [query, setQuery] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSearch(query);
+    query !== "" && handleSearch(query);
   };
   return (
     <div className={style.searchContainer}>
