@@ -6,7 +6,7 @@ import data from "../data/playlist";
 import Main from "../layout/main";
 
 const Index = () => {
-  const { auth, setAuth } = useState(false);
+  const [auth, setAuth] = useState(false);
   useEffect(() => {
     const payload = callback();
     if (payload) {
