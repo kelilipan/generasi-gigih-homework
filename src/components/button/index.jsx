@@ -1,7 +1,7 @@
 import style from "./style.module.css";
-const Button = ({ leftIcon, children, ...props }) => {
+const Button = ({ leftIcon, children, variant = "default", ...props }) => {
   return (
-    <button className={style.btn} {...props}>
+    <button className={`${style.btn} ${style["btn-" + variant]}`} {...props}>
       {leftIcon} {children}
     </button>
   );

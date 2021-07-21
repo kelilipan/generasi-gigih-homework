@@ -1,9 +1,8 @@
 import Button from "../button";
 import Link from "../link";
 import style from "./style.module.css";
-const MusicCard = ({ data }) => {
+const MusicCard = ({ data, isSelected, handleSelect }) => {
   const { album, artists, external_urls, name } = data;
-
   //notice that one music can have more than 1 artist
   const artistText = artists.map((artist, idx) => {
     const isLast = idx === artists.length - 1;
@@ -36,11 +35,10 @@ const MusicCard = ({ data }) => {
         </div>
         <div>
           <Button
-            onClick={() => {
-              alert(data.id);
-            }}
+            variant={isSelected ? "gray" : "default"}
+            onClick={() => handleSelect(data.uri)}
           >
-            Select
+            {isSelected ? "Selected" : "Select"}
           </Button>
         </div>
       </div>

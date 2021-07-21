@@ -4,9 +4,16 @@
   border-radius: 50px;
   cursor: pointer;
   border: 0;
+
+  padding: 1em 1.5em;
+}
+.btn-default {
   color: #fff;
   background-color: #15883e;
-  padding: 1em 1.5em;
+}
+.btn-gray {
+  color: #fff;
+  background-color: #444;
 }
 .btn > svg {
   margin-right: 5px;
