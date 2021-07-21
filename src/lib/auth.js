@@ -14,16 +14,19 @@ const generateRandomString = (length) => {
 //function to redirect to spotify login API
 
 const redirect = () => {
+  const url = "https://accounts.spotify.com/authorize";
   const scope = "user-read-private playlist-modify-private user-read-email";
   const state = generateRandomString(16);
-  let url = "https://accounts.spotify.com/authorize";
-  url += "?response_type=token";
-  url += `&client_id=${encodeURIComponent(CLIENT_ID)}`;
-  url += `&scope=${encodeURIComponent(scope)}`;
-  url += `&redirect_uri=${encodeURIComponent(REDIRECT_URL)}`;
-  url += `&state=${encodeURIComponent(state)}`;
+  const paramsData = {
+    response_type: "token",
+    client_id: CLIENT_ID,
+    redirect_uri: REDIRECT_URL,
+    state,
+    scope,
+  };
+  const params = new URLSearchParams(paramsData).toString();
   //redirect...
-  window.location = url;
+  window.location = `${url}?${params}`;
 };
 
 /*
