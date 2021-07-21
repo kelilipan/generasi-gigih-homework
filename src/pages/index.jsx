@@ -33,7 +33,7 @@ const Index = () => {
     <>
       <Navbar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
       <Main>
-        <h1 style={{ fontSize: "56px" }}>Create playlist</h1>
+        <h1 style={{ fontSize: "48px" }}>Create playlist</h1>
         <Playlist data={trackList} />
       </Main>
     </>
