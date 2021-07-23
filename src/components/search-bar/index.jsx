@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import Button from "../button";
 import style from "./style.module.css";
-const SearchBar = ({ handleSearch }) => {
+const SearchBar = ({ handleSearch, isLoading }) => {
   const [query, setQuery] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,12 @@ const SearchBar = ({ handleSearch }) => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <Button leftIcon={<FaSearch />} type="submit" aria-label="search song">
+        <Button
+          isLoading={isLoading}
+          leftIcon={<FaSearch />}
+          type="submit"
+          aria-label="search song"
+        >
           Search
         </Button>
       </form>

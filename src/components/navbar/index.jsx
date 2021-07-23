@@ -4,13 +4,13 @@ import { FaSpotify } from "react-icons/fa";
 import { redirect } from "../../lib/auth";
 import SearchBar from "../search-bar";
 import Profile from "../profile";
-const Navbar = ({ userData, handleSearch }) => {
+const Navbar = ({ userData, handleSearch, isLoading }) => {
   const isAuthenticated = userData?.access_token !== undefined;
   return (
     <div className={style.navbar}>
       {isAuthenticated ? (
         <>
-          <SearchBar handleSearch={handleSearch} />
+          <SearchBar isLoading={isLoading} handleSearch={handleSearch} />
           <Profile userData={userData} />
         </>
       ) : (

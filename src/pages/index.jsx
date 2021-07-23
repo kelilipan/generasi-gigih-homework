@@ -8,6 +8,7 @@ import { getProfile, getSearchTrack } from "../lib/spotify";
 
 const Index = () => {
   const [trackList, setTrackList] = useState(initData);
+  const [isLoading, setIsloading] = useState(false);
   const [auth, setAuth] = useState(false);
   const [userData, setUserData] = useState({});
   useEffect(() => {
@@ -25,13 +26,19 @@ const Index = () => {
       type: "track",
       limit: 12,
     };
+    setIsloading(true);
     getSearchTrack(auth.access_token, options).then((res) => {
       setTrackList(res.tracks.items);
+      setIsloading(false);
     });
   };
   return (
     <>
-      <Navbar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
+      <Navbar
+        userData={{ ...userData, ...auth }}
+        isLoading={isLoading}
+        handleSearch={handleSearch}
+      />
       <Main>
         <h1 style={{ fontSize: "48px" }}>Create playlist</h1>
         <Playlist data={trackList} />
