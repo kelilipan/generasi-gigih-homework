@@ -13,7 +13,7 @@ const ModalPlaylist = ({ isOpen, onClose }) => {
       window.addEventListener("click", handleClick);
     }
     return () => window.removeEventListener("click", handleClick);
-  }, [isOpen]);
+  }, [isOpen, onClose]);
   return (
     isOpen &&
     createPortal(
