@@ -18,7 +18,10 @@ const Playlist = ({ data, userData }) => {
   const { access_token, id: user_id } = userData;
 
   const handleCreatePlaylist = (payload) => {
-    isAuthenticated && createPlaylist(access_token, user_id, payload);
+    isAuthenticated &&
+      createPlaylist(access_token, user_id, payload).then(() => {
+        setModalOpen(false);
+      });
   };
 
   return (
