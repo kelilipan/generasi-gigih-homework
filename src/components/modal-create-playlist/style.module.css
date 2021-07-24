@@ -52,6 +52,7 @@
   background-color: #3e3e3e;
   outline: none;
   resize: none;
+  font: inherit;
 }
 .formControl input {
   border-radius: 5px;
