@@ -6,7 +6,7 @@ import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 const Playlist = ({ data }) => {
   const { checkSelected, handleSelect, createPlaylist } = usePlaylist();
-  const [isModalOpen, setModalOpen] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
   return (
     <div className="playlistContainer">
       {data.map((music) => (
@@ -24,7 +24,12 @@ const Playlist = ({ data }) => {
         }}
       />
       <div style={{ position: "fixed", bottom: 18, right: 18 }}>
-        <Button leftIcon={<FaPlusCircle />} onClick={createPlaylist}>
+        <Button
+          leftIcon={<FaPlusCircle />}
+          onClick={() => {
+            setModalOpen(true);
+          }}
+        >
           Create playlist
         </Button>
       </div>
