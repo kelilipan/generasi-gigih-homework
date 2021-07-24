@@ -40,8 +40,8 @@ const Index = () => {
         handleSearch={handleSearch}
       />
       <Main>
-        <h1 style={{ fontSize: "48px" }}>Create playlist</h1>
-        <Playlist data={trackList} />
+        <h1 style={{ fontSize: "44px" }}>Select tracks</h1>
+        <Playlist data={trackList} userData={{ ...userData, ...auth }} />
       </Main>
     </>
   );

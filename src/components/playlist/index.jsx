@@ -4,9 +4,23 @@ import { usePlaylist } from "../../lib/usePlaylist";
 import Button from "../button";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
-const Playlist = ({ data }) => {
-  const { checkSelected, handleSelect, createPlaylist } = usePlaylist();
+const Playlist = ({ data, userData }) => {
+  const {
+    selectedTrack,
+    checkSelected,
+    handleSelect,
+    createPlaylist,
+    isLoading,
+  } = usePlaylist();
+  const isEmpty = selectedTrack.length === 0;
+  const isAuthenticated = userData?.access_token !== undefined;
   const [isModalOpen, setModalOpen] = useState(false);
+  const { access_token, id: user_id } = userData;
+
+  const handleCreatePlaylist = (payload) => {
+    isAuthenticated && createPlaylist(access_token, user_id, payload);
+  };
+
   return (
     <div className="playlistContainer">
       {data.map((music) => (
@@ -17,22 +31,27 @@ const Playlist = ({ data }) => {
           isSelected={checkSelected(music.uri)}
         />
       ))}
+
       <ModalPlaylist
+        isLoading={isLoading}
+        createPlaylist={handleCreatePlaylist}
         isOpen={isModalOpen}
         onClose={() => {
           setModalOpen(false);
         }}
       />
-      <div style={{ position: "fixed", bottom: 18, right: 18 }}>
-        <Button
-          leftIcon={<FaPlusCircle />}
-          onClick={() => {
-            setModalOpen(true);
-          }}
-        >
-          Create playlist
-        </Button>
-      </div>
+      {isAuthenticated && !isEmpty && (
+        <div style={{ position: "fixed", bottom: 18, right: 18 }}>
+          <Button
+            leftIcon={<FaPlusCircle />}
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          >
+            Create playlist
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

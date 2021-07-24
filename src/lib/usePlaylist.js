@@ -1,9 +1,12 @@
 import { useState } from "react";
-
+import {
+  createPlaylist as createPlaylistAPI,
+  addTraksToPlaylist,
+} from "./spotify";
 //TODO: use context API
 const usePlaylist = () => {
   const [selectedTrack, setSelectedTrack] = useState([]);
-
+  const [isLoading, setLoading] = useState(false);
   const addTrack = (id) => {
     setSelectedTrack([...selectedTrack, id]);
   };
@@ -29,9 +32,23 @@ const usePlaylist = () => {
       removeTrack(id);
     }
   };
-  const createPlaylist = () => {
-    console.log(selectedTrack);
+
+  const createPlaylist = (token, userId, payload) => {
+    setLoading(true);
+    //create playlist
+    return createPlaylistAPI(token, userId, payload).then((res) => {
+      const { id: playlist_id } = res;
+      //after playlist created, insert tracklist
+      return addTraksToPlaylist(token, playlist_id, {
+        uris: selectedTrack,
+      }).then(() => {
+        //after successfull, empty the tracklist
+        setSelectedTrack([]);
+        setLoading(false);
+      });
+    });
   };
+
   return {
     selectedTrack,
     createPlaylist,
@@ -39,6 +56,7 @@ const usePlaylist = () => {
     removeTrack,
     checkSelected,
     handleSelect,
+    isLoading,
   };
 };
 export { usePlaylist };

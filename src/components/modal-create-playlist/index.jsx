@@ -3,10 +3,12 @@ import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import Button from "../button";
 import { FaSave, FaTimes } from "react-icons/fa";
-const ModalPlaylist = ({ isOpen, onClose, createPlaylist }) => {
+const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
   const [payload, setPayload] = useState({
     name: "",
     description: "",
+    public: false,
+    collaborative: false,
   });
 
   const handleChange = (e) => {
@@ -16,7 +18,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(payload);
+    createPlaylist(payload);
   };
 
   useEffect(() => {
@@ -54,7 +56,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist }) => {
                   id="name"
                   name="name"
                   placeholder="Input playlist name"
-                  min="10"
+                  minlength="10"
                   onChange={handleChange}
                 />
               </div>
@@ -65,7 +67,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist }) => {
                   id="description"
                   name="description"
                   placeholder="Input playlist description"
-                  min="20"
+                  minlength="20"
                   onChange={handleChange}
                 />
               </div>
@@ -73,6 +75,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist }) => {
           </div>
           <div className={style.footer}>
             <Button
+              isLoading={isLoading}
               form="createPlaylistForm"
               leftIcon={<FaSave />}
               style={{ marginLeft: "auto" }}
