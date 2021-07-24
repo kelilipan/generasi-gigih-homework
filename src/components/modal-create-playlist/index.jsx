@@ -12,7 +12,10 @@ const ModalPlaylist = ({ isOpen, onClose }) => {
       document.body.style.overflow = "hidden";
       window.addEventListener("click", handleClick);
     }
-    return () => window.removeEventListener("click", handleClick);
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("click", handleClick);
+    };
   }, [isOpen, onClose]);
   return (
     isOpen &&
