@@ -16,4 +16,16 @@ const getSearchTrack = (accessToken, options) => {
     },
   }).then((res) => res.json());
 };
-export { getProfile, getSearchTrack };
+
+const createPlaylist = (accessToken, userId, payload) => {
+  return fetch(`${API_BASE}/users/${userId}/playlists`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify(payload),
+  }).then((res) => res.json());
+};
+
+export { getProfile, getSearchTrack, createPlaylist };
