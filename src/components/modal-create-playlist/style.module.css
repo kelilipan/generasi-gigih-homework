@@ -1,0 +1,23 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 1500;
+}
+
+.modalContent {
+  border-radius: 5px;
+  background-color: #282828;
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 500px;
+  top: 50%;
+  transform: translateY(-50%);
+}
