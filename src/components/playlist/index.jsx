@@ -4,6 +4,7 @@ import { usePlaylist } from "../../lib/usePlaylist";
 import Button from "../button";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
+import toast from "react-hot-toast";
 const Playlist = ({ data, userData }) => {
   const {
     selectedTrack,
@@ -21,6 +22,13 @@ const Playlist = ({ data, userData }) => {
     isAuthenticated &&
       createPlaylist(access_token, user_id, payload).then(() => {
         setModalOpen(false);
+        toast.success("Successfully created!", {
+          duration: 4000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        });
       });
   };
 
