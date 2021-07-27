@@ -1,13 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, storeUserData } from "../store/user";
-import { getProfile } from "./spotify";
+import { useSelector } from "react-redux";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URL = process.env.REACT_APP_BASE_URL;
 
 const useUser = () => {
-  const dispatch = useDispatch();
   const { isAuthenticated, data, accessToken } = useSelector(
     (state) => state.user
   );
@@ -55,17 +51,6 @@ const useUser = () => {
     return hashParams.access_token && hashParams;
   };
 
-  useEffect(() => {
-    if (window.location.hash && !isAuthenticated) {
-      const { access_token } = callback();
-      if (access_token) {
-        dispatch(login(access_token));
-        getProfile(access_token).then((res) => {
-          dispatch(storeUserData(res));
-        });
-      }
-    }
-  }, [dispatch, isAuthenticated]);
-  return { redirect, isAuthenticated, accessToken, user: data };
+  return { redirect, callback, isAuthenticated, accessToken, user: data };
 };
 export { useUser };
