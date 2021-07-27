@@ -56,7 +56,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
                   id="name"
                   name="name"
                   placeholder="Input playlist name"
-                  minlength="10"
+                  minLength="10"
                   onChange={handleChange}
                 />
               </div>
@@ -67,7 +67,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
                   id="description"
                   name="description"
                   placeholder="Input playlist description"
-                  minlength="20"
+                  minLength="20"
                   onChange={handleChange}
                 />
               </div>
