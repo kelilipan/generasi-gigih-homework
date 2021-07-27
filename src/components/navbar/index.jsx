@@ -1,17 +1,17 @@
 import Button from "../button";
 import style from "./style.module.css";
 import { FaSpotify } from "react-icons/fa";
-import { redirect } from "../../lib/auth";
 import SearchBar from "../search-bar";
 import Profile from "../profile";
-const Navbar = ({ userData, handleSearch, isLoading }) => {
-  const isAuthenticated = userData?.access_token !== undefined;
+import { useUser } from "../../lib/useUser";
+const Navbar = ({ handleSearch, isLoading }) => {
+  const { isAuthenticated, user, redirect } = useUser();
   return (
     <div className={style.navbar}>
       {isAuthenticated ? (
         <>
           <SearchBar isLoading={isLoading} handleSearch={handleSearch} />
-          <Profile userData={userData} />
+          <Profile userData={user} />
         </>
       ) : (
         <Button

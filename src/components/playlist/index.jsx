@@ -5,7 +5,8 @@ import Button from "../button";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 import toast from "react-hot-toast";
-const Playlist = ({ data, userData }) => {
+import { useUser } from "../../lib/useUser";
+const Playlist = ({ data }) => {
   const {
     selectedTrack,
     checkSelected,
@@ -14,13 +15,16 @@ const Playlist = ({ data, userData }) => {
     isLoading,
   } = usePlaylist();
   const isEmpty = selectedTrack.length === 0;
-  const isAuthenticated = userData?.access_token !== undefined;
   const [isModalOpen, setModalOpen] = useState(false);
-  const { access_token, id: user_id } = userData;
+  const {
+    isAuthenticated,
+    accessToken,
+    user: { id: user_id },
+  } = useUser();
 
   const handleCreatePlaylist = (payload) => {
     isAuthenticated &&
-      createPlaylist(access_token, user_id, payload).then(() => {
+      createPlaylist(accessToken, user_id, payload).then(() => {
         setModalOpen(false);
         toast.success("Successfully created!", {
           duration: 4000,

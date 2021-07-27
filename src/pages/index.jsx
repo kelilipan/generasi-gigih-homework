@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
-import { callback } from "../lib/auth";
+import { useState } from "react";
 import Playlist from "../components/playlist";
 import Navbar from "../components/navbar";
 import initData from "../data/playlist";
 import Main from "../layout/main";
-import { getProfile, getSearchTrack } from "../lib/spotify";
+import { getSearchTrack } from "../lib/spotify";
+import { useUser } from "../lib/useUser";
 
 const Index = () => {
   const [trackList, setTrackList] = useState(initData);
   const [isLoading, setIsloading] = useState(false);
-  const [auth, setAuth] = useState(false);
-  const [userData, setUserData] = useState({});
-  useEffect(() => {
-    const payload = callback();
-    if (payload) {
-      setAuth(payload);
-      getProfile(payload.access_token).then((res) => {
-        setUserData(res);
-      });
-    }
-  }, []);
+  const { accessToken } = useUser();
+
   const handleSearch = (query) => {
     const options = {
       q: query,
@@ -27,21 +18,17 @@ const Index = () => {
       limit: 12,
     };
     setIsloading(true);
-    getSearchTrack(auth.access_token, options).then((res) => {
+    getSearchTrack(accessToken, options).then((res) => {
       setTrackList(res.tracks.items);
       setIsloading(false);
     });
   };
   return (
     <>
-      <Navbar
-        userData={{ ...userData, ...auth }}
-        isLoading={isLoading}
-        handleSearch={handleSearch}
-      />
+      <Navbar isLoading={isLoading} handleSearch={handleSearch} />
       <Main>
         <h1 style={{ fontSize: "44px" }}>Select tracks</h1>
-        <Playlist data={trackList} userData={{ ...userData, ...auth }} />
+        <Playlist data={trackList} />
       </Main>
     </>
   );

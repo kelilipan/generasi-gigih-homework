@@ -8,7 +8,9 @@ const REDIRECT_URL = process.env.REACT_APP_BASE_URL;
 
 const useUser = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, data } = useSelector((state) => state.user);
+  const { isAuthenticated, data, accessToken } = useSelector(
+    (state) => state.user
+  );
 
   const generateRandomString = (length) => {
     let result = "";
@@ -54,16 +56,16 @@ const useUser = () => {
   };
 
   useEffect(() => {
-    if (window.location.hash) {
-      const accessToken = callback();
-      if (accessToken) {
-        dispatch(login(accessToken));
-        getProfile(accessToken).then((res) => {
+    if (window.location.hash && !isAuthenticated) {
+      const { access_token } = callback();
+      if (access_token) {
+        dispatch(login(access_token));
+        getProfile(access_token).then((res) => {
           dispatch(storeUserData(res));
         });
       }
     }
-  }, []);
-  return { redirect, isAuthenticated, user: data };
+  }, [dispatch, isAuthenticated]);
+  return { redirect, isAuthenticated, accessToken, user: data };
 };
 export { useUser };
