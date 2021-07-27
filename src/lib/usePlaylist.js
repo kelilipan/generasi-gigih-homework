@@ -1,24 +1,15 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createPlaylist as createPlaylistAPI,
   addTraksToPlaylist,
 } from "./spotify";
-//TODO: use context API
-const usePlaylist = () => {
-  const [selectedTrack, setSelectedTrack] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const addTrack = (id) => {
-    setSelectedTrack([...selectedTrack, id]);
-  };
+import { addTrack, removeTrack, clearPlaylist } from "../store/playlist";
 
-  const removeTrack = (id) => {
-    const temp = [...selectedTrack];
-    const idx = temp.indexOf(id);
-    if (idx !== -1) {
-      temp.splice(idx, 1);
-      setSelectedTrack(temp);
-    }
-  };
+const usePlaylist = () => {
+  const [isLoading, setLoading] = useState(false);
+  const selectedTrack = useSelector((state) => state.playlist.uris);
+  const dispatch = useDispatch();
 
   const checkSelected = (id) => {
     return selectedTrack.includes(id);
@@ -27,9 +18,9 @@ const usePlaylist = () => {
   const handleSelect = (id) => {
     const isSelected = checkSelected(id);
     if (!isSelected) {
-      addTrack(id);
+      dispatch(addTrack(id));
     } else {
-      removeTrack(id);
+      dispatch(removeTrack(id));
     }
   };
 
@@ -43,7 +34,7 @@ const usePlaylist = () => {
         uris: selectedTrack,
       }).then(() => {
         //after successfull, empty the tracklist
-        setSelectedTrack([]);
+        dispatch(clearPlaylist());
         setLoading(false);
       });
     });
@@ -52,8 +43,6 @@ const usePlaylist = () => {
   return {
     selectedTrack,
     createPlaylist,
-    addTrack,
-    removeTrack,
     checkSelected,
     handleSelect,
     isLoading,

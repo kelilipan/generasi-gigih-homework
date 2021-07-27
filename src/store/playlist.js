@@ -9,11 +9,10 @@ export const playlistSlice = createSlice({
   initialState,
   reducers: {
     addTrack: (state, action) => {
-      state.isAuthenticated = true;
-      state.accessToken = action.payload.accessToken;
+      state.uris.push(action.payload);
     },
     removeTrack: (state, action) => {
-      state.uris = state.uris.filter((uri) => action.payload.uri !== uri);
+      state.uris = state.uris.filter((uri) => action.payload !== uri);
     },
     clearPlaylist: (state) => {
       state = initialState;
