@@ -39,7 +39,7 @@ const Index = () => {
         });
       }
     }
-  }, [dispatch, isAuthenticated]);
+  }, [dispatch, callback, isAuthenticated]);
   return (
     <>
       <Navbar isLoading={isLoading} handleSearch={handleSearch} />
