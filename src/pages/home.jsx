@@ -4,6 +4,7 @@ import { getProfile } from "../lib/spotify";
 import { useUser } from "../lib/useUser";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Header from "../components/home-header";
 
 const Home = () => {
   const { isAuthenticated, callback } = useUser();
@@ -21,7 +22,11 @@ const Home = () => {
       }
     }
   }, [dispatch, callback, isAuthenticated]);
-  return <Main>Index</Main>;
+  return (
+    <Main>
+      <Header />
+    </Main>
+  );
 };
 
 export default Home;
