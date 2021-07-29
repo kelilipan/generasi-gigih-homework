@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { usePlaylist } from "../../lib/usePlaylist";
 import Button from "../button";
@@ -6,7 +6,11 @@ import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 import toast from "react-hot-toast";
 import { useUser } from "../../lib/useUser";
-const Playlist = ({ data }) => {
+import { useTracklist } from "../../lib/useTracklist";
+import { useDispatch } from "react-redux";
+import { clearList, storeTracklist } from "../../store/tracklist";
+import { getTopTracks } from "../../lib/spotify";
+const Playlist = () => {
   const {
     selectedTrack,
     checkSelected,
@@ -14,13 +18,17 @@ const Playlist = ({ data }) => {
     createPlaylist,
     isLoading,
   } = usePlaylist();
-  const isEmpty = selectedTrack.length === 0;
-  const [isModalOpen, setModalOpen] = useState(false);
+
   const {
     isAuthenticated,
     accessToken,
     user: { id: user_id },
   } = useUser();
+
+  const dispatch = useDispatch();
+  const { tracklist } = useTracklist();
+  const isEmpty = selectedTrack.length === 0;
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleCreatePlaylist = (payload) => {
     isAuthenticated &&
@@ -36,9 +44,20 @@ const Playlist = ({ data }) => {
       });
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      getTopTracks(accessToken).then((data) => {
+        dispatch(storeTracklist(data.items));
+      });
+    }
+    return () => {
+      dispatch(clearList());
+    };
+  }, [dispatch, isAuthenticated, accessToken]);
+
   return (
     <div className="playlistContainer">
-      {data.map((music) => (
+      {tracklist.map((music) => (
         <MusicCard
           key={music.id}
           data={music}

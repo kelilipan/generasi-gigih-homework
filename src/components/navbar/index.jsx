@@ -4,8 +4,10 @@ import { FaSpotify } from "react-icons/fa";
 import SearchBar from "../search-bar";
 import Profile from "../profile";
 import { useUser } from "../../lib/useUser";
-const Navbar = ({ handleSearch, isLoading }) => {
+import { useTracklist } from "../../lib/useTracklist";
+const Navbar = () => {
   const { isAuthenticated, user, redirect } = useUser();
+  const { isLoading, handleSearch } = useTracklist();
   return (
     <div className={style.navbar}>
       {isAuthenticated ? (

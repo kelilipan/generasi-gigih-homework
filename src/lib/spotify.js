@@ -37,4 +37,20 @@ const addTraksToPlaylist = (accessToken, playlisId, payload) => {
     body: JSON.stringify(payload),
   }).then((res) => res.json());
 };
-export { getProfile, getSearchTrack, createPlaylist, addTraksToPlaylist };
+
+const getTopTracks = (accessToken) => {
+  const limit = 20;
+  return fetch(API_BASE + `/me/top/tracks?limit=${limit}`, {
+    headers: {
+      Authorization: "Bearer " + accessToken,
+    },
+  }).then((res) => res.json());
+};
+
+export {
+  getTopTracks,
+  getProfile,
+  getSearchTrack,
+  createPlaylist,
+  addTraksToPlaylist,
+};

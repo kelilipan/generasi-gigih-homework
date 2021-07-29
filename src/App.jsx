@@ -1,4 +1,6 @@
-import Index from "./pages/index";
+import Index from "./pages/home";
+import Navbar from "./components/navbar";
+import CreatePlaylist from "./pages/create-playlist";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -7,7 +9,11 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <Navbar />
         <Switch>
+          <Route exact path="/create-playlist">
+            <CreatePlaylist />
+          </Route>
           <Route exact path="/">
             <Index />
           </Route>
