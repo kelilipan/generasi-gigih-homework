@@ -5,6 +5,7 @@ import { useUser } from "../lib/useUser";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Header from "../components/home-header";
+import Feature from "../components/home-feature";
 import { useHistory } from "react-router-dom";
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
   return (
     <Main>
       <Header />
+      <Feature />
     </Main>
   );
 };
