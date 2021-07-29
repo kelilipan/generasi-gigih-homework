@@ -11,7 +11,7 @@ const PrivateRoute = ({ children, fallbackUrl = "/", ...props }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: fallbackUrl,
               state: { from: location },
             }}
           />

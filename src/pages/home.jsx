@@ -25,7 +25,8 @@ const Home = () => {
     } else if (isAuthenticated) {
       history.push("/create-playlist");
     }
-  }, [dispatch, callback, isAuthenticated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
   return (
     <Main>
       <Header />
