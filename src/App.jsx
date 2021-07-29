@@ -5,15 +5,16 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/private-route";
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/create-playlist">
+          <PrivateRoute exact path="/create-playlist">
             <CreatePlaylist />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <Index />
           </Route>
