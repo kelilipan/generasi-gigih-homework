@@ -1,9 +1,7 @@
-const home = () => {
-  return (
-    <div>
-      Index
-    </div>
-  )
-}
+import Main from "../layout/main";
 
-export default home
+const Home = () => {
+  return <Main>Index</Main>;
+};
+
+export default Home;

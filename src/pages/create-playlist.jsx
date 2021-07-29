@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Playlist from "../components/playlist";
+import Tracklist from "../components/tracklist";
 import Main from "../layout/main";
 import { getProfile } from "../lib/spotify";
 import { useUser } from "../lib/useUser";
@@ -27,7 +27,7 @@ const Index = () => {
     <>
       <Main>
         <h1 style={{ fontSize: "44px" }}>Select tracks</h1>
-        <Playlist />
+        <Tracklist />
       </Main>
     </>
   );
