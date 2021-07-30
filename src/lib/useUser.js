@@ -49,7 +49,9 @@ const useUser = () => {
     while ((e = r.exec(q))) {
       hashParams[e[1]] = decodeURIComponent(e[2]);
     }
-    return hashParams.access_token && hashParams;
+    if (hashParams.access_token) {
+      return hashParams;
+    }
   };
 
   return { redirect, callback, isAuthenticated, accessToken, user: data };
