@@ -10,6 +10,7 @@ import { useTracklist } from "../../lib/useTracklist";
 import { useDispatch } from "react-redux";
 import { clearList, storeTracklist } from "../../store/tracklist";
 import { getTopTracks } from "../../lib/spotify";
+import style from "./style.module.css";
 const Playlist = () => {
   const {
     selectedTrack,
@@ -56,7 +57,7 @@ const Playlist = () => {
   }, [dispatch, isAuthenticated, accessToken]);
 
   return (
-    <div className="playlistContainer">
+    <div className={style.playlistContainer}>
       {tracklist.map((music) => (
         <MusicCard
           key={music.id}
