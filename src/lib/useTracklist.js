@@ -13,7 +13,7 @@ const useTracklist = () => {
     const options = {
       q: query,
       type: "track",
-      limit: 12,
+      limit: 20,
     };
     setIsloading(true);
     getSearchTrack(accessToken, options).then((data) => {
