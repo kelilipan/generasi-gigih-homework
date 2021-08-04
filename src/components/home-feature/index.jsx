@@ -1,10 +1,13 @@
+import { Heading, SimpleGrid } from "@chakra-ui/react";
 import style from "./style.module.css";
 
 const Feature = () => {
   return (
     <div className={style.container}>
-      <h2 className={style.title}>Maw maw maw?</h2>
-      <div className={style.imageContainer}>
+      <Heading as="h2" fontSize="3xl" textAlign="center" mb="4">
+        Maw maw maw?
+      </Heading>
+      <SimpleGrid columns={[2, 2, 4]}>
         <div className={style.cardContainer}>
           <img src="http://placekitten.com/g/200/200" alt="meong meong meng" />
           <p>
@@ -33,7 +36,7 @@ const Feature = () => {
             meow meow
           </p>
         </div>
-      </div>
+      </SimpleGrid>
     </div>
   );
 };
