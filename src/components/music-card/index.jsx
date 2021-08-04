@@ -21,7 +21,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
   });
   const buttonSize = useBreakpointValue(["sm", "md"]);
   const itemVariant = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 15, opacity: 0 },
     show: { y: 0, opacity: 1 },
   };
   return (
