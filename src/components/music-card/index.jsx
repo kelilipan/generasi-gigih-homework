@@ -1,5 +1,4 @@
-import { Button } from "@chakra-ui/react";
-import Link from "../link";
+import { Button, Link } from "@chakra-ui/react";
 import style from "./style.module.css";
 const MusicCard = ({ data, isSelected, handleSelect }) => {
   const { album, artists, external_urls, name } = data;
@@ -35,7 +34,9 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
         </div>
         <div>
           <Button
-            variant={isSelected ? "gray" : "default"}
+            colorScheme={isSelected ? "gray" : "brand"}
+            color={isSelected ? "gray.700" : "inherit"}
+            variant="solid"
             onClick={() => handleSelect(data.uri)}
           >
             {isSelected ? "Selected" : "Select"}

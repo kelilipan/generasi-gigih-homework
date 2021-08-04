@@ -1,4 +1,4 @@
-import Link from "../link";
+import { Link } from "@chakra-ui/react";
 import style from "./style.module.css";
 const Profile = ({ userData }) => {
   const isLoading = userData.display_name === undefined;
