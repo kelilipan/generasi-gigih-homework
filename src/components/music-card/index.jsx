@@ -7,7 +7,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
     const isLast = idx === artists.length - 1;
     const text = isLast ? artist.name : artist.name + ", ";
     return (
-      <Link href={artist.external_urls.spotify} key={artist.id}>
+      <Link isExternal href={artist.external_urls.spotify} key={artist.id}>
         {text}
       </Link>
     );
@@ -15,7 +15,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
   return (
     <div className={style.card}>
       <div className={style.imageContainer}>
-        <Link href={album.external_urls.spotify}>
+        <Link isExternal href={album.external_urls.spotify}>
           <img
             className={style.albumArt}
             src={album.images[1].url}
@@ -26,10 +26,15 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
       <div className={style.description}>
         <div>
           <h4 className={style.title}>
-            <Link href={external_urls.spotify}>{name}</Link> - {artistText}
+            <Link isExternal href={external_urls.spotify}>
+              {name}
+            </Link>{" "}
+            - {artistText}
           </h4>
           <h5 className={style.albumText}>
-            <Link href={album.external_urls.spotify}>{album.name}</Link>
+            <Link isExternal href={album.external_urls.spotify}>
+              {album.name}
+            </Link>
           </h5>
         </div>
         <div>
