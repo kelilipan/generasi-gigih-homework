@@ -5,7 +5,7 @@ import Profile from "../profile";
 import { useUser } from "../../lib/useUser";
 import { useTracklist } from "../../lib/useTracklist";
 const Navbar = () => {
-  const { isAuthenticated, user, redirect } = useUser();
+  const { isAuthenticated, user, redirect, logout } = useUser();
   const { isLoading, handleSearch } = useTracklist();
   const bgColor = "rgba(36, 36, 36, 0.5)";
   return (
@@ -34,7 +34,7 @@ const Navbar = () => {
       {isAuthenticated ? (
         <>
           <SearchBar isLoading={isLoading} handleSearch={handleSearch} />
-          <Profile userData={user} />
+          <Profile userData={user} handleLogout={logout} />
         </>
       ) : (
         <Button

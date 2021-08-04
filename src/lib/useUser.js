@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/user";
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URL = process.env.REACT_APP_BASE_URL;
 
@@ -7,7 +7,7 @@ const useUser = () => {
   const { isAuthenticated, data, accessToken } = useSelector(
     (state) => state.user
   );
-
+  const dispatch = useDispatch();
   const generateRandomString = (length) => {
     let result = "";
     let characters =
@@ -53,7 +53,16 @@ const useUser = () => {
       return hashParams;
     }
   };
-
-  return { redirect, callback, isAuthenticated, accessToken, user: data };
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+  return {
+    redirect,
+    callback,
+    isAuthenticated,
+    accessToken,
+    user: data,
+    logout: handleLogout,
+  };
 };
 export { useUser };
