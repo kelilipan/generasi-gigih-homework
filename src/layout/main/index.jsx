@@ -1,6 +1,8 @@
+import { Flex } from "@chakra-ui/layout";
+
 const Main = ({ children, style }) => {
   return (
-    <div
+    <Flex
       style={{
         display: "flex",
         flexDirection: "column",
@@ -11,7 +13,7 @@ const Main = ({ children, style }) => {
       }}
     >
       {children}
-    </div>
+    </Flex>
   );
 };
 
