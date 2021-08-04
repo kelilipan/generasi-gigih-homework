@@ -75,9 +75,9 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
 
         <ModalFooter>
           <Button
+            onClick={handleSubmit}
             isLoading={isLoading}
             loadingText="Saving"
-            form="createPlaylistForm"
             leftIcon={<FaSave />}
             style={{ marginLeft: "auto" }}
           >
