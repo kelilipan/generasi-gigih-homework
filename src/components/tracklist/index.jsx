@@ -67,10 +67,6 @@ const Playlist = () => {
     },
     exit: { opacity: 0, transition: { duration: 0.1 } },
   };
-  const itemVariant = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 },
-  };
   return (
     <>
       {tracklist.length > 0 && (
