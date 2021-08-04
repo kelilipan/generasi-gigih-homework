@@ -22,6 +22,7 @@ const SearchBar = ({ handleSearch, isLoading }) => {
         />
         <Button
           isLoading={isLoading}
+          loadingText="Searching"
           leftIcon={<FaSearch />}
           type="submit"
           aria-label="search song"

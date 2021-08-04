@@ -77,6 +77,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
           <div className={style.footer}>
             <Button
               isLoading={isLoading}
+              loadingText="Saving"
               form="createPlaylistForm"
               leftIcon={<FaSave />}
               style={{ marginLeft: "auto" }}
