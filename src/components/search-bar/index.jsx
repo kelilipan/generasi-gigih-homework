@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.css";
 const SearchBar = ({ handleSearch, isLoading }) => {
   const [query, setQuery] = useState("");

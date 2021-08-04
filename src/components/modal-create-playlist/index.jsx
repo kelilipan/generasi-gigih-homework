@@ -1,7 +1,7 @@
 import style from "./style.module.css";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import { FaSave, FaTimes } from "react-icons/fa";
 const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
   const [payload, setPayload] = useState({

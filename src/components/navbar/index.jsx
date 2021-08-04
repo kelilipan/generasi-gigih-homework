@@ -1,4 +1,4 @@
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.css";
 import { FaSpotify } from "react-icons/fa";
 import SearchBar from "../search-bar";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { usePlaylist } from "../../lib/usePlaylist";
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 import toast from "react-hot-toast";

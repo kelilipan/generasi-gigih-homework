@@ -1,4 +1,4 @@
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import Link from "../link";
 import style from "./style.module.css";
 const MusicCard = ({ data, isSelected, handleSelect }) => {
