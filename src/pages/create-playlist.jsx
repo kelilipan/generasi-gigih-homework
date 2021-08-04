@@ -1,10 +1,13 @@
+import { Heading } from "@chakra-ui/react";
 import Tracklist from "../components/tracklist";
 import Main from "../layout/main";
 
 const Index = () => {
   return (
     <Main>
-      <h1 style={{ fontSize: "44px" }}>Select tracks</h1>
+      <Heading my="4" fontSize="4xl">
+        Select tracks
+      </Heading>
       <Tracklist />
     </Main>
   );

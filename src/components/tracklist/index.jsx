@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { usePlaylist } from "../../lib/usePlaylist";
-import { Button } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid } from "@chakra-ui/react";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 import toast from "react-hot-toast";
@@ -10,7 +10,6 @@ import { useTracklist } from "../../lib/useTracklist";
 import { useDispatch } from "react-redux";
 import { clearList, storeTracklist } from "../../store/tracklist";
 import { getTopTracks } from "../../lib/spotify";
-import style from "./style.module.css";
 const Playlist = () => {
   const {
     selectedTrack,
@@ -57,7 +56,7 @@ const Playlist = () => {
   }, [dispatch, isAuthenticated, accessToken]);
 
   return (
-    <div className={style.playlistContainer}>
+    <SimpleGrid columns={[1, 1, 2]} spacing={2}>
       {tracklist.map((music) => (
         <MusicCard
           key={music.id}
@@ -76,7 +75,7 @@ const Playlist = () => {
         }}
       />
       {isAuthenticated && !isEmpty && (
-        <div style={{ position: "fixed", bottom: 18, right: 18 }}>
+        <Box pos="fixed" bottom={18} right={18}>
           <Button
             leftIcon={<FaPlusCircle />}
             onClick={() => {
@@ -85,9 +84,9 @@ const Playlist = () => {
           >
             Create playlist
           </Button>
-        </div>
+        </Box>
       )}
-    </div>
+    </SimpleGrid>
   );
 };
 
