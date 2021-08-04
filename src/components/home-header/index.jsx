@@ -1,6 +1,6 @@
 import { FaSpotify } from "react-icons/fa";
 import { useUser } from "../../lib/useUser";
-import Button from "../button";
+import { Button } from "@chakra-ui/react";
 import style from "./style.module.css";
 const Header = () => {
   const { redirect } = useUser();
