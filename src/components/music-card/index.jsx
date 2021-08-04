@@ -3,6 +3,7 @@ import {
   Flex,
   Image,
   Link,
+  Skeleton,
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
@@ -42,6 +43,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
         <Link isExternal href={album.external_urls.spotify}>
           <Image
             _groupHover={{ opacity: 0.7 }}
+            fallback={<Skeleton boxSize={["80px", "125px"]} />}
             boxSize={["80px", "125px"]}
             src={album.images[1].url}
             alt={album.name}
