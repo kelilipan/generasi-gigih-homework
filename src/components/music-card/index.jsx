@@ -6,6 +6,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import MotionBox from "../motion-box";
 const MusicCard = ({ data, isSelected, handleSelect }) => {
   const { album, artists, external_urls, name } = data;
   //notice that one music can have more than 1 artist
@@ -19,8 +20,14 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
     );
   });
   const buttonSize = useBreakpointValue(["sm", "md"]);
+  const itemVariant = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
   return (
-    <Flex
+    <MotionBox
+      variants={itemVariant}
+      d="flex"
       role="group"
       p="2"
       border="1px solid rgba(255, 255, 255, 0.1)"
@@ -67,7 +74,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
           </Button>
         </Flex>
       </Flex>
-    </Flex>
+    </MotionBox>
   );
 };
 

@@ -10,6 +10,9 @@ import { useTracklist } from "../../lib/useTracklist";
 import { useDispatch } from "react-redux";
 import { clearList, storeTracklist } from "../../store/tracklist";
 import { getTopTracks } from "../../lib/spotify";
+import { motion } from "framer-motion";
+const MotionGrid = motion(SimpleGrid);
+
 const Playlist = () => {
   const {
     selectedTrack,
@@ -54,18 +57,40 @@ const Playlist = () => {
       dispatch(clearList());
     };
   }, [dispatch, isAuthenticated, accessToken]);
-
+  const containerVariant = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+    exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
+  const itemVariant = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
   return (
-    <SimpleGrid columns={[1, 1, 2]} spacing={2}>
-      {tracklist.map((music) => (
-        <MusicCard
-          key={music.id}
-          data={music}
-          handleSelect={handleSelect}
-          isSelected={checkSelected(music.uri)}
-        />
-      ))}
-
+    <>
+      {tracklist.length > 0 && (
+        <MotionGrid
+          columns={[1, 1, 2]}
+          spacing={2}
+          variants={containerVariant}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          {tracklist.map((music) => (
+            <MusicCard
+              data={music}
+              handleSelect={handleSelect}
+              isSelected={checkSelected(music.uri)}
+            />
+          ))}
+        </MotionGrid>
+      )}
       <ModalPlaylist
         isLoading={isLoading}
         createPlaylist={handleCreatePlaylist}
@@ -86,7 +111,7 @@ const Playlist = () => {
           </Button>
         </Box>
       )}
-    </SimpleGrid>
+    </>
   );
 };
 
