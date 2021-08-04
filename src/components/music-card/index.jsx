@@ -34,6 +34,7 @@ const MusicCard = ({ data, isSelected, handleSelect }) => {
       <Flex boxSize={["80px", "125px"]}>
         <Link isExternal href={album.external_urls.spotify}>
           <Image
+            _groupHover={{ opacity: 0.7 }}
             boxSize={["80px", "125px"]}
             src={album.images[1].url}
             alt={album.name}
