@@ -1,17 +1,8 @@
 import { Flex } from "@chakra-ui/layout";
 
-const Main = ({ children, style }) => {
+const Main = ({ children, ...props }) => {
   return (
-    <Flex
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flexGrow: 1,
-        padding: "1em",
-        paddingTop: "65px",
-        ...style,
-      }}
-    >
+    <Flex flex="1" flexDir="column" px={4} pt="65px" {...props}>
       {children}
     </Flex>
   );
