@@ -27,7 +27,7 @@ const Navbar = () => {
           bgColor,
         },
         "@supports not (backdrop-filter: blur(10px))": {
-          bgColor,
+          bgColor: "rgba(36, 36, 36, 0.9)",
         },
       }}
     >
