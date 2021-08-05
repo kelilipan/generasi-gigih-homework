@@ -1,27 +1,29 @@
 import { FaSpotify } from "react-icons/fa";
 import { useUser } from "../../lib/useUser";
-import Button from "../button";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import style from "./style.module.css";
 const Header = () => {
   const { redirect } = useUser();
   return (
     <div className={style.container}>
       <div className={style.textWrapper}>
-        <h1 className={style.title}>Lorem ipsum?</h1>
-        <p>
+        <Heading as="h1" fontSize="4xl">
+          Lorem ipsum?
+        </Heading>
+        <Text>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure odio
           possimus praesentium, suscipit quae repellat quidem sint itaque at
           totam. Provident veniam consequatur commodi nemo quae dolores ratione
           aliquam. Nostrum!
-        </p>
-        <div>
+        </Text>
+        <Box mt="4">
           <Button
             onClick={() => redirect()}
             leftIcon={<FaSpotify fontSize="20px" />}
           >
             Login With Spotify
           </Button>
-        </div>
+        </Box>
       </div>
       <div className={style.videoWrapper}>
         <iframe

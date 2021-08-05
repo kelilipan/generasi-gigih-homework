@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { usePlaylist } from "../../lib/usePlaylist";
-import Button from "../button";
+import { Box, Button, SimpleGrid } from "@chakra-ui/react";
 import ModalPlaylist from "../modal-create-playlist";
 import MusicCard from "../music-card";
 import toast from "react-hot-toast";
@@ -10,7 +10,9 @@ import { useTracklist } from "../../lib/useTracklist";
 import { useDispatch } from "react-redux";
 import { clearList, storeTracklist } from "../../store/tracklist";
 import { getTopTracks } from "../../lib/spotify";
-import style from "./style.module.css";
+import { motion } from "framer-motion";
+const MotionGrid = motion(SimpleGrid);
+
 const Playlist = () => {
   const {
     selectedTrack,
@@ -55,18 +57,36 @@ const Playlist = () => {
       dispatch(clearList());
     };
   }, [dispatch, isAuthenticated, accessToken]);
-
+  const containerVariant = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+    exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
   return (
-    <div className={style.playlistContainer}>
-      {tracklist.map((music) => (
-        <MusicCard
-          key={music.id}
-          data={music}
-          handleSelect={handleSelect}
-          isSelected={checkSelected(music.uri)}
-        />
-      ))}
-
+    <>
+      {tracklist.length > 0 && (
+        <MotionGrid
+          columns={[1, 1, 2]}
+          spacing={2}
+          variants={containerVariant}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          {tracklist.map((music) => (
+            <MusicCard
+              data={music}
+              handleSelect={handleSelect}
+              isSelected={checkSelected(music.uri)}
+            />
+          ))}
+        </MotionGrid>
+      )}
       <ModalPlaylist
         isLoading={isLoading}
         createPlaylist={handleCreatePlaylist}
@@ -76,7 +96,7 @@ const Playlist = () => {
         }}
       />
       {isAuthenticated && !isEmpty && (
-        <div style={{ position: "fixed", bottom: 18, right: 18 }}>
+        <Box pos="fixed" bottom={18} right={18}>
           <Button
             leftIcon={<FaPlusCircle />}
             onClick={() => {
@@ -85,9 +105,9 @@ const Playlist = () => {
           >
             Create playlist
           </Button>
-        </div>
+        </Box>
       )}
-    </div>
+    </>
   );
 };
 

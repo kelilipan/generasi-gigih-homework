@@ -19,5 +19,7 @@
 }
 .cardContainer {
   text-align: center;
-  width: 25%;
+}
+.cardContainer img {
+  margin: 0 auto;
 }

@@ -17,6 +17,7 @@ const useTracklist = () => {
     };
     setIsloading(true);
     getSearchTrack(accessToken, options).then((data) => {
+      dispatch(storeTracklist([])); // this will trigger stagger animation
       dispatch(storeTracklist(data.tracks.items));
       setIsloading(false);
     });
