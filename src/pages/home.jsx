@@ -17,9 +17,9 @@ const Home = () => {
     if (!isAuthenticated && window.location.hash) {
       const { access_token } = callback();
       if (access_token) {
+        dispatch(login(access_token));
         //if access_token is valid, try to get userData using spotify api
         getProfile(access_token).then((res) => {
-          dispatch(login(access_token));
           dispatch(storeUserData(res));
         });
       }

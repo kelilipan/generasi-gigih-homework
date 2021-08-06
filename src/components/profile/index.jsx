@@ -15,7 +15,16 @@ const Profile = ({ userData, handleLogout }) => {
     _hover: { bgColor: "blackAlpha.400" },
   };
   return isLoading ? (
-    <Flex>Loading...</Flex>
+    <Flex
+      ml="auto"
+      d={["none", null, "flex"]}
+      alignItems="center"
+      borderRadius="full"
+      bgColor="rgba(138, 138, 138, 0.5)"
+      minH="48px"
+    >
+      Loading...
+    </Flex>
   ) : (
     <Flex
       d={["none", null, "flex"]}
