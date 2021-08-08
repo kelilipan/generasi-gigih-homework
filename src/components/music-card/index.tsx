@@ -42,7 +42,6 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
       p="2"
       border="1px solid rgba(255, 255, 255, 0.1)"
       borderRadius="5px"
-      transition="all ease 0.15s"
       gridGap={4}
       _hover={{
         bgColor: "#272727",
