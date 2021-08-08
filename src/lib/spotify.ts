@@ -7,7 +7,9 @@ const getProfile = (
     headers: {
       Authorization: "Bearer " + accessToken,
     },
-  }).then((res) => res.json() as Promise<SpotifyApi.UserProfileResponse>);
+  }).then(
+    (res) => res.json() as Promise<SpotifyApi.CurrentUsersProfileResponse>
+  );
 };
 
 const getSearchTrack = (
