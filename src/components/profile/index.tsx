@@ -6,7 +6,11 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-const Profile = ({ userData, handleLogout }) => {
+interface ProfileNavProps {
+  userData: Partial<SpotifyApi.CurrentUsersProfileResponse>;
+  handleLogout: () => void;
+}
+const Profile = ({ userData, handleLogout }: ProfileNavProps) => {
   const isLoading = userData.display_name === undefined;
   const { display_name, images } = userData;
   const menuItem = {
@@ -33,7 +37,7 @@ const Profile = ({ userData, handleLogout }) => {
       alignItems="center"
       ml="auto"
     >
-      <Avatar src={images[0]?.url} name={display_name} />
+      <Avatar src={images && images[0]?.url} name={display_name} />
       <Menu>
         {({ isOpen }) => (
           <>
@@ -41,7 +45,7 @@ const Profile = ({ userData, handleLogout }) => {
               {display_name}
             </MenuButton>
             <MenuList bg="#282828" border="none">
-              <MenuItem {...menuItem} onClick={handleLogout}>
+              <MenuItem {...menuItem} onClick={() => handleLogout()}>
                 Logout
               </MenuItem>
             </MenuList>

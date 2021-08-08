@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Button, Flex, Input } from "@chakra-ui/react";
-const SearchBar = ({ handleSearch, isLoading }) => {
+
+interface SearchBarProps {
+  handleSearch: (query: string) => void;
+  isLoading: boolean;
+}
+
+const SearchBar = ({ handleSearch, isLoading }: SearchBarProps) => {
   const [query, setQuery] = useState("");
-  const onSubmit = (e) => {
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (query !== "") {
       handleSearch(query);
