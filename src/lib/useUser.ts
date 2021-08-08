@@ -1,14 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { logout } from "../store/user";
+import { useAppDispatch, useAppSelector } from "./useRedux";
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URL = process.env.REACT_APP_BASE_URL;
 
 const useUser = () => {
-  const { isAuthenticated, data, accessToken } = useSelector(
+  const { isAuthenticated, data, accessToken } = useAppSelector(
     (state) => state.user
   );
-  const dispatch = useDispatch();
-  const generateRandomString = (length) => {
+  const dispatch = useAppDispatch();
+  const generateRandomString = (length: number): string => {
     let result = "";
     let characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -22,19 +23,20 @@ const useUser = () => {
   //function to redirect to spotify login API
   const redirect = () => {
     const url = "https://accounts.spotify.com/authorize";
+    const history = useHistory();
     const scope =
       "user-read-private playlist-modify-private user-read-email user-top-read";
     const state = generateRandomString(16);
     const paramsData = {
       response_type: "token",
-      client_id: CLIENT_ID,
-      redirect_uri: REDIRECT_URL,
+      client_id: CLIENT_ID as string,
+      redirect_uri: REDIRECT_URL as string,
       state,
       scope,
     };
     const params = new URLSearchParams(paramsData).toString();
     //redirect...
-    window.location = `${url}?${params}`;
+    history.replace(`${url}?${params}`);
   };
 
   /*
@@ -42,15 +44,15 @@ const useUser = () => {
   return the response or undefined
   */
   const callback = () => {
-    let hashParams = {};
-    let e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    if (hashParams.access_token) {
-      return hashParams;
+    const hash = window.location.hash;
+    const params = hash.substr(1).split("&");
+    const decodedParams = params.reduce((acc: any, currentValue) => {
+      const [key, value] = currentValue.split("=");
+      acc[key] = value;
+      return acc;
+    }, {});
+    if (hash) {
+      return decodedParams;
     }
   };
   const handleLogout = () => {
