@@ -1,4 +1,3 @@
-import { useHistory } from "react-router-dom";
 import { logout } from "../store/user";
 import { useAppDispatch, useAppSelector } from "./useRedux";
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -9,7 +8,6 @@ const useUser = () => {
     (state) => state.user
   );
   const dispatch = useAppDispatch();
-  const history = useHistory();
   const generateRandomString = (length: number): string => {
     let result = "";
     let characters =
@@ -36,7 +34,7 @@ const useUser = () => {
     };
     const params = new URLSearchParams(paramsData).toString();
     //redirect...
-    history.replace(`${url}?${params}`);
+    window.location.replace(`${url}?${params}`);
   };
 
   /*
