@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   createPlaylist as createPlaylistAPI,
   addTraksToPlaylist,
+  PlaylistOption,
 } from "./spotify";
 import { addTrack, removeTrack, clearPlaylist } from "../store/playlist";
+import { useAppDispatch, useAppSelector } from "./useRedux";
 
 const usePlaylist = () => {
   const [isLoading, setLoading] = useState(false);
-  const selectedTrack = useSelector((state) => state.playlist.uris);
-  const dispatch = useDispatch();
+  const selectedTrack = useAppSelector((state) => state.playlist.uris);
+  const dispatch = useAppDispatch();
 
-  const checkSelected = (id) => {
+  const checkSelected = (id: string) => {
     return selectedTrack.includes(id);
   };
 
-  const handleSelect = (id) => {
+  const handleSelect = (id: string) => {
     const isSelected = checkSelected(id);
     if (!isSelected) {
       dispatch(addTrack(id));
@@ -24,7 +25,7 @@ const usePlaylist = () => {
     }
   };
 
-  const createPlaylist = (token, userId, payload) => {
+  const createPlaylist = (token:string, userId:string, payload:PlaylistOption) => {
     setLoading(true);
     //create playlist
     return createPlaylistAPI(token, userId, payload).then((res) => {

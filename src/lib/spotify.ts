@@ -1,4 +1,10 @@
 const API_BASE = "https://api.spotify.com/v1";
+export interface PlaylistOption {
+  name: string;
+  description: string;
+  public: boolean;
+  collaborative: boolean;
+}
 
 const getProfile = (
   accessToken: string
@@ -29,7 +35,7 @@ const getSearchTrack = (
 const createPlaylist = (
   accessToken: string,
   userId: string,
-  payload: SpotifyApi.PlaylistBaseObject
+  payload: PlaylistOption
 ): Promise<SpotifyApi.CreatePlaylistResponse> => {
   return fetch(`${API_BASE}/users/${userId}/playlists`, {
     method: "POST",
@@ -43,7 +49,7 @@ const createPlaylist = (
 const addTraksToPlaylist = (
   accessToken: string,
   playlisId: string,
-  payload: string[]
+  payload: { uris: string[] }
 ): Promise<SpotifyApi.AddTracksToPlaylistResponse> => {
   return fetch(`${API_BASE}/playlists/${playlisId}/tracks`, {
     method: "POST",
