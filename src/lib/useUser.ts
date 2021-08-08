@@ -9,6 +9,7 @@ const useUser = () => {
     (state) => state.user
   );
   const dispatch = useAppDispatch();
+  const history = useHistory();
   const generateRandomString = (length: number): string => {
     let result = "";
     let characters =
@@ -23,7 +24,6 @@ const useUser = () => {
   //function to redirect to spotify login API
   const redirect = () => {
     const url = "https://accounts.spotify.com/authorize";
-    const history = useHistory();
     const scope =
       "user-read-private playlist-modify-private user-read-email user-top-read";
     const state = generateRandomString(16);
