@@ -10,11 +10,13 @@ import {
 } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
 import MotionBox from "../motion-box";
-interface MusicCardProps {
+
+export interface MusicCardProps {
   data: SpotifyApi.TrackObjectFull;
   isSelected: boolean;
   handleSelect: (uri: string) => void;
 }
+
 const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
   const { album, artists, external_urls, name } = data;
   //notice that one music can have more than 1 artist

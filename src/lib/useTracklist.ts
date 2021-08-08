@@ -7,7 +7,7 @@ import { useUser } from "./useUser";
 const useTracklist = () => {
   const tracklist = useAppSelector((state) => state.tracks.lists);
   const dispatch = useAppDispatch();
-  const { isAuthenticated, accessToken } = useUser();
+  const { accessToken } = useUser();
   const [isLoading, setIsloading] = useState(false);
   const handleSearch = (query: string) => {
     const options = {
