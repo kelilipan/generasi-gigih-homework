@@ -1,7 +1,7 @@
 import { Redirect, Route, RouteProps } from "react-router-dom";
 import { useUser } from "../../lib/useUser";
 interface PrivateRouteProps extends RouteProps {
-  fallbackUrl: string;
+  fallbackUrl?: string;
 }
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
   children,
