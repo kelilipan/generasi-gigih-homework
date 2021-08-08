@@ -1,12 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = { lists: [] };
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+export interface TrackListState {
+  lists: SpotifyApi.TrackObjectFull[] | undefined;
+}
+const initialState: TrackListState = { lists: [] };
 
 export const tracklistSlice = createSlice({
   name: "tracks",
   initialState,
   reducers: {
-    storeTracklist: (state, action) => {
+    storeTracklist: (
+      state,
+      action: PayloadAction<SpotifyApi.TrackObjectFull[] | undefined>
+    ) => {
       state.lists = action.payload;
     },
     clearList: (state) => {

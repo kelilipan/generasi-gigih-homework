@@ -1,6 +1,13 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, RouteProps } from "react-router-dom";
 import { useUser } from "../../lib/useUser";
-const PrivateRoute = ({ children, fallbackUrl = "/", ...props }) => {
+interface PrivateRouteProps extends RouteProps {
+  fallbackUrl?: string;
+}
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+  children,
+  fallbackUrl = "/",
+  ...props
+}) => {
   const { isAuthenticated } = useUser();
   return (
     <Route

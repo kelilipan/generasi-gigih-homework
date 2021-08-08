@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface PlaylistState {
+  uris: string[];
+}
+
+const initialState: PlaylistState = {
   uris: [],
 };
 
@@ -8,10 +12,10 @@ export const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
-    addTrack: (state, action) => {
+    addTrack: (state, action: PayloadAction<string>) => {
       state.uris.push(action.payload);
     },
-    removeTrack: (state, action) => {
+    removeTrack: (state, action: PayloadAction<string>) => {
       state.uris = state.uris.filter((uri) => action.payload !== uri);
     },
     clearPlaylist: (state) => {
