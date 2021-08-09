@@ -6,13 +6,12 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-interface ProfileNavProps {
-  userData: Partial<SpotifyApi.CurrentUsersProfileResponse>;
-  handleLogout: () => void;
-}
-const Profile = ({ userData, handleLogout }: ProfileNavProps) => {
-  const isLoading = userData.display_name === undefined;
-  const { display_name, images } = userData;
+import { useUser } from "../../lib/useUser";
+
+const Profile = () => {
+  const { user, logout } = useUser();
+  const isLoading = user === undefined;
+  const { display_name, images } = user || {};
   const menuItem = {
     bg: "#282828",
     _focus: { bgColor: "blackAlpha.400" },
@@ -45,7 +44,7 @@ const Profile = ({ userData, handleLogout }: ProfileNavProps) => {
               {display_name}
             </MenuButton>
             <MenuList bg="#282828" border="none">
-              <MenuItem {...menuItem} onClick={() => handleLogout()}>
+              <MenuItem {...menuItem} onClick={() => logout()}>
                 Logout
               </MenuItem>
             </MenuList>

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 export interface TrackListState {
   lists: SpotifyApi.TrackObjectFull[] | undefined;
 }

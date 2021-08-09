@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 export interface UserState {
   isAuthenticated: boolean;
-  accessToken: string | undefined;
-  data: SpotifyApi.CurrentUsersProfileResponse;
+  accessToken?: string;
+  data?: SpotifyApi.CurrentUsersProfileResponse;
 }
-const initialState = {
+
+const initialState: UserState = {
   isAuthenticated: false,
   accessToken: undefined,
-  data: {},
+  data: undefined,
 };
 
 export const userSlice = createSlice({

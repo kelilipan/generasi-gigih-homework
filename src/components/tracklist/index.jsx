@@ -22,12 +22,7 @@ const Playlist = () => {
     isLoading,
   } = usePlaylist();
 
-  const {
-    isAuthenticated,
-    accessToken,
-    user: { id: user_id },
-  } = useUser();
-
+  const { isAuthenticated, accessToken, user } = useUser();
   const dispatch = useDispatch();
   const { tracklist } = useTracklist();
   const isEmpty = selectedTrack.length === 0;
@@ -35,7 +30,7 @@ const Playlist = () => {
 
   const handleCreatePlaylist = (payload) => {
     isAuthenticated &&
-      createPlaylist(accessToken, user_id, payload).then(() => {
+      createPlaylist(accessToken, user.id, payload).then(() => {
         setModalOpen(false);
         toast.success("Successfully created!", {
           duration: 4000,
