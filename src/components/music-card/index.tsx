@@ -50,6 +50,7 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
       <Flex boxSize={["80px", "125px"]} pos="relative">
         <Link href={data.uri}>
           <Image
+            data-testid="album-cover"
             _groupHover={{ opacity: 0.7 }}
             fallback={<Skeleton boxSize={["80px", "125px"]} />}
             boxSize={["80px", "125px"]}
@@ -72,13 +73,21 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
       <Flex flex={1} flexDir="column" justifyContent="space-between">
         <Flex flexDir="column">
           <Text as="h4" fontWeight="bold" fontSize={["sm", "md"]} noOfLines={2}>
-            <Link isExternal href={external_urls.spotify}>
+            <Link
+              data-testid="track-name"
+              isExternal
+              href={external_urls.spotify}
+            >
               {name}
             </Link>{" "}
             - {artistText}
           </Text>
           <Text as="h5" fontSize={["sm", "md"]} noOfLines={1}>
-            <Link isExternal href={album.external_urls.spotify}>
+            <Link
+              data-testid="album-name"
+              isExternal
+              href={album.external_urls.spotify}
+            >
               {album.name}
             </Link>
           </Text>
