@@ -23,7 +23,7 @@ const useUser = () => {
   const redirect = () => {
     const url = "https://accounts.spotify.com/authorize";
     const scope =
-      "user-read-private playlist-modify-private user-read-email user-top-read streaming user-read-playback-state user-modify-playback-state";
+      "playlist-modify-private user-top-read streaming user-read-playback-state user-modify-playback-state";
     const state = generateRandomString(16);
     const paramsData = {
       response_type: "token",

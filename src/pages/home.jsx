@@ -19,9 +19,13 @@ const Home = () => {
       if (access_token) {
         dispatch(login(access_token));
         //if access_token is valid, try to get userData using spotify api
-        getProfile(access_token).then((res) => {
-          dispatch(storeUserData(res));
-        });
+        getProfile(access_token)
+          .then((res) => {
+            dispatch(storeUserData(res));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       }
     } else if (isAuthenticated) {
       history.push("/create-playlist");
