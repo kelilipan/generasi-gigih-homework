@@ -8,8 +8,7 @@ import toast from "react-hot-toast";
 import { useUser } from "../../lib/useUser";
 import { useTracklist } from "../../lib/useTracklist";
 import { useDispatch } from "react-redux";
-import { clearList, storeTracklist } from "../../store/tracklist";
-import { getTopTracks } from "../../lib/spotify";
+import { clearList } from "../../store/tracklist";
 import { motion } from "framer-motion";
 const MotionGrid = motion(SimpleGrid);
 
@@ -24,7 +23,7 @@ const Playlist = () => {
 
   const { isAuthenticated, accessToken, user } = useUser();
   const dispatch = useDispatch();
-  const { tracklist } = useTracklist();
+  const { tracklist, handleTopTracks } = useTracklist();
   const isEmpty = selectedTrack.length === 0;
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -44,9 +43,7 @@ const Playlist = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      getTopTracks(accessToken).then((data) => {
-        dispatch(storeTracklist(data.items));
-      });
+      handleTopTracks();
     }
     return () => {
       dispatch(clearList());
@@ -64,24 +61,27 @@ const Playlist = () => {
   };
   return (
     <>
-      {tracklist.length > 0 && (
-        <MotionGrid
-          columns={[1, 1, 2]}
-          spacing={2}
-          variants={containerVariant}
-          initial="hidden"
-          animate="show"
-          exit="exit"
-        >
-          {tracklist.map((music) => (
-            <MusicCard
-              data={music}
-              handleSelect={handleSelect}
-              isSelected={checkSelected(music.uri)}
-            />
-          ))}
-        </MotionGrid>
-      )}
+      <Box flex={1}>
+        {tracklist.length > 0 && (
+          <MotionGrid
+            columns={[1, 1, 2]}
+            spacing={2}
+            variants={containerVariant}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
+            {tracklist.map((music) => (
+              <MusicCard
+                key={music.id}
+                data={music}
+                handleSelect={handleSelect}
+                isSelected={checkSelected(music.uri)}
+              />
+            ))}
+          </MotionGrid>
+        )}
+      </Box>
       <ModalPlaylist
         isLoading={isLoading}
         createPlaylist={handleCreatePlaylist}

@@ -40,9 +40,7 @@ const Profile = () => {
       <Menu>
         {({ isOpen }) => (
           <>
-            <MenuButton mx="2" isActive={isOpen}>
-              {display_name}
-            </MenuButton>
+            <MenuButton mx="2">{display_name}</MenuButton>
             <MenuList bg="#282828" border="none">
               <MenuItem {...menuItem} onClick={() => logout()}>
                 Logout

@@ -1,4 +1,5 @@
-const API_BASE = "https://api.spotify.com/v1";
+import config from "../site.config";
+const API_BASE = config.SPOTIFY_API_BASE_URL;
 export interface PlaylistOption {
   name: string;
   description: string;
@@ -64,10 +65,11 @@ const addTraksToPlaylist = (
 };
 
 const getTopTracks = (
-  accessToken: string
+  accessToken: string,
+  offset: number
 ): Promise<SpotifyApi.UsersTopTracksResponse> => {
-  const limit = 20;
-  return fetch(API_BASE + `/me/top/tracks?limit=${limit}`, {
+  const limit = config.SPOTIFY_SEARCH_LIMIT;
+  return fetch(API_BASE + `/me/top/tracks?limit=${limit}&offset=${offset}`, {
     headers: {
       Authorization: "Bearer " + accessToken,
     },
