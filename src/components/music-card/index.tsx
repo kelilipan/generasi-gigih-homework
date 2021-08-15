@@ -51,6 +51,7 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
           <Image
             data-testid="album-cover"
             _groupHover={{ opacity: 0.7 }}
+            fallbackSrc="https://via.placeholder.com/150?text=Loading..."
             boxSize={["80px", "125px"]}
             src={album.images[1].url}
             alt={album.name}
