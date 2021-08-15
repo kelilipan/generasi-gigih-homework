@@ -8,24 +8,22 @@ const Player = () => {
   const { isPlaying, playedTrack } = useTracklist();
   return (
     <Box pos="fixed" zIndex="modal" w="full" bottom={0}>
-      {isPlaying && (
-        <SpotifyPlayer
-          token={accessToken || ""}
-          play={isPlaying}
-          uris={playedTrack}
-          styles={{
-            activeColor: "#fff",
-            bgColor: "#181818",
-            color: "#fff",
-            loaderColor: "#fff",
-            sliderColor: "#1DB954",
-            sliderTrackColor: "#535353",
-            sliderHandleColor: "#fff",
-            trackArtistColor: "#ccc",
-            trackNameColor: "#fff",
-          }}
-        />
-      )}
+      <SpotifyPlayer
+        token={accessToken || ""}
+        play={isPlaying}
+        uris={playedTrack}
+        styles={{
+          activeColor: "#fff",
+          bgColor: "#181818",
+          color: "#fff",
+          loaderColor: "#fff",
+          sliderColor: "#1DB954",
+          sliderTrackColor: "#535353",
+          sliderHandleColor: "#fff",
+          trackArtistColor: "#ccc",
+          trackNameColor: "#fff",
+        }}
+      />
     </Box>
   );
 };
