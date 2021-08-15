@@ -9,28 +9,28 @@ const Feature = () => {
       </Heading>
       <SimpleGrid columns={[2, 2, 4]}>
         <div className={style.cardContainer}>
-          <img src="http://placekitten.com/g/200/200" alt="meong meong meng" />
+          <img src="https://placekitten.com/g/200/200" alt="meong meong meng" />
           <p>
             Meow meow meow meow meow meow meow meow meow meow meow meow meow
             meow meow
           </p>
         </div>
         <div className={style.cardContainer}>
-          <img src="http://placekitten.com/g/200/200" alt="meong meong meng" />
+          <img src="https://placekitten.com/g/200/200" alt="meong meong meng" />
           <p>
             Meow meow meow meow meow meow meow meow meow meow meow meow meow
             meow meow
           </p>
         </div>
         <div className={style.cardContainer}>
-          <img src="http://placekitten.com/g/200/200" alt="meong meong meng" />
+          <img src="https://placekitten.com/g/200/200" alt="meong meong meng" />
           <p>
             Meow meow meow meow meow meow meow meow meow meow meow meow meow
             meow meow
           </p>
         </div>
         <div className={style.cardContainer}>
-          <img src="http://placekitten.com/g/200/200" alt="meong meong meng" />
+          <img src="https://placekitten.com/g/200/200" alt="meong meong meng" />
           <p>
             Meow meow meow meow meow meow meow meow meow meow meow meow meow
             meow meow
