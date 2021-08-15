@@ -12,7 +12,7 @@ import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { CacheOnly, StaleWhileRevalidate } from "workbox-strategies";
+import { StaleWhileRevalidate } from "workbox-strategies";
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -23,6 +23,8 @@ clientsClaim();
 // This variable must be present somewhere in your service worker file,
 // even if you decide not to use precaching. See https://cra.link/PWA
 precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(["/fonts/var-inter-latin.woff2"]);//pre cache fonts
+
 
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
@@ -52,26 +54,12 @@ registerRoute(
   },
   createHandlerBoundToURL(process.env.PUBLIC_URL + "/index.html")
 );
-
 registerRoute(
   /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
   new StaleWhileRevalidate({
     cacheName: "static-image-assets",
     plugins: [
       new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 24 * 60 * 60 }),
-    ],
-  })
-);
-
-registerRoute(
-  /\.(?:woff|woff2)$/i,
-  new CacheOnly({
-    cacheName: "static-fonts-assets",
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 2,
-        maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
-      }),
     ],
   })
 );
