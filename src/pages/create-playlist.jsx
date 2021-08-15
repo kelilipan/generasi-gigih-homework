@@ -1,5 +1,6 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
+import Player from "../components/player";
 import Tracklist from "../components/tracklist";
 import Main from "../layout/main";
 import { useTracklist } from "../lib/useTracklist";
@@ -23,35 +24,38 @@ const Index = () => {
     }
   };
   return (
-    <Main>
-      <Stack
-        my={[2, 4]}
-        direction={["column", "row"]}
-        justifyContent="space-between"
-      >
-        <Heading m="0" fontSize="4xl">
-          Select tracks
-        </Heading>
+    <>
+      <Main>
+        <Stack
+          my={[2, 4]}
+          direction={["column", "row"]}
+          justifyContent="space-between"
+        >
+          <Heading m="0" fontSize="4xl">
+            Select tracks
+          </Heading>
+          {isTrackEmpty && (
+            <Pagination
+              ml="auto"
+              currentPage={currentPage}
+              maxLength={maxLength}
+              handleChangePage={handlePagination}
+            />
+          )}
+        </Stack>
+        <Tracklist />
         {isTrackEmpty && (
           <Pagination
-            ml="auto"
             currentPage={currentPage}
             maxLength={maxLength}
             handleChangePage={handlePagination}
+            mt="4"
+            ml="auto"
           />
         )}
-      </Stack>
-      <Tracklist />
-      {isTrackEmpty && (
-        <Pagination
-          currentPage={currentPage}
-          maxLength={maxLength}
-          handleChangePage={handlePagination}
-          mt="4"
-          ml="auto"
-        />
-      )}
-    </Main>
+      </Main>
+      <Player />
+    </>
   );
 };
 

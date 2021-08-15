@@ -4,6 +4,7 @@ import { storeTracklist } from "../store/tracklist";
 import { getSearchTrack, getTopTracks } from "./spotify";
 import { useAppDispatch, useAppSelector } from "./useRedux";
 import { useUser } from "./useUser";
+import { playTrack, stopPlayback } from "../store/playback";
 
 const useTracklist = () => {
   const {
@@ -13,6 +14,9 @@ const useTracklist = () => {
     isTopTrack,
     query: currentQuery,
   } = useAppSelector((state) => state.tracks);
+  const { play: isPlaying, uris: playedTrack } = useAppSelector(
+    (state) => state.playback
+  );
 
   const dispatch = useAppDispatch();
   const { accessToken } = useUser();
@@ -71,6 +75,19 @@ const useTracklist = () => {
       );
     });
   };
+
+  const checkPlaying = (uri: string) => {
+    return uri === playedTrack;
+  };
+
+  const handlePlay = (uri: string) => {
+    if (checkPlaying(uri)) {
+      dispatch(stopPlayback());
+    } else {
+      dispatch(playTrack(uri));
+    }
+  };
+
   return {
     tracklist,
     isLoading,
@@ -80,6 +97,10 @@ const useTracklist = () => {
     currentQuery,
     currentPage,
     maxLength,
+    handlePlay,
+    checkPlaying,
+    isPlaying,
+    playedTrack,
   };
 };
 export { useTracklist };
