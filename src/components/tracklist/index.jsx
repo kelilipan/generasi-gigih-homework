@@ -42,13 +42,14 @@ const Playlist = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated ) {
       handleTopTracks();
     }
     return () => {
       dispatch(clearList());
     };
-  }, [dispatch, handleTopTracks, isAuthenticated, accessToken]);
+  // eslint-disable-next-line
+  }, [dispatch, isAuthenticated, accessToken]);
   const containerVariant = {
     hidden: { opacity: 0 },
     show: {
