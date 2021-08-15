@@ -64,7 +64,7 @@ registerRoute(
 );
 
 registerRoute(
-  /\.(?:woff|woff2|ttf|otf)$/i,
+  /\.(?:woff|woff2)$/i,
   new CacheOnly({
     cacheName: "static-fonts-assets",
     plugins: [
