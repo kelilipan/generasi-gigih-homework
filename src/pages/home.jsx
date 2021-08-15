@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import Header from "../components/home-header";
 import Feature from "../components/home-feature";
 import { useHistory } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const { isAuthenticated, callback } = useUser();
@@ -25,6 +26,13 @@ const Home = () => {
           })
           .catch((err) => {
             console.error(err);
+            toast.error("Failed to get user data!", {
+              duration: 4000,
+              style: {
+                background: "#333",
+                color: "#fff",
+              },
+            });
           });
       }
     } else if (isAuthenticated) {
