@@ -7,17 +7,25 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { FaPlay } from "react-icons/fa";
+import { FaPause, FaPlay } from "react-icons/fa";
 import MotionBox from "../motion-box";
 
 export interface MusicCardProps {
   data: SpotifyApi.TrackObjectFull;
   isSelected: boolean;
   handleSelect: (uri: string) => void;
+  isPlayed: boolean;
+  handlePlay: (uri: string) => void;
 }
 
-const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
-  const { album, artists, external_urls, name } = data;
+const MusicCard = ({
+  data,
+  isSelected,
+  handleSelect,
+  isPlayed,
+  handlePlay,
+}: MusicCardProps) => {
+  const { album, artists, external_urls, name, uri } = data;
   //notice that one music can have more than 1 artist
   const artistText = artists.map((artist, idx) => {
     const isLast = idx === artists.length - 1;
@@ -47,7 +55,7 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
       }}
     >
       <Flex boxSize={["80px", "125px"]} pos="relative">
-        <Link href={data.uri}>
+        <Box onClick={() => handlePlay(uri)}>
           <Image
             data-testid="album-cover"
             _groupHover={{ opacity: 0.7 }}
@@ -65,9 +73,9 @@ const MusicCard = ({ data, isSelected, handleSelect }: MusicCardProps) => {
             transform="translate(-50%, -50%)"
             fontSize="3xl"
           >
-            <FaPlay />
+            {isPlayed ? <FaPause /> : <FaPlay />}
           </Box>
-        </Link>
+        </Box>
       </Flex>
       <Flex flex={1} flexDir="column" justifyContent="space-between">
         <Flex flexDir="column">

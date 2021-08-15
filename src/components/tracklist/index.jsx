@@ -23,7 +23,8 @@ const Playlist = () => {
 
   const { isAuthenticated, accessToken, user } = useUser();
   const dispatch = useDispatch();
-  const { tracklist, handleTopTracks } = useTracklist();
+  const { tracklist, handleTopTracks, checkPlaying, handlePlay } =
+    useTracklist();
   const isEmpty = selectedTrack.length === 0;
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -42,13 +43,13 @@ const Playlist = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated ) {
+    if (isAuthenticated) {
       handleTopTracks();
     }
     return () => {
       dispatch(clearList());
     };
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [dispatch, isAuthenticated, accessToken]);
   const containerVariant = {
     hidden: { opacity: 0 },
@@ -78,6 +79,8 @@ const Playlist = () => {
                 data={music}
                 handleSelect={handleSelect}
                 isSelected={checkSelected(music.uri)}
+                isPlayed={checkPlaying(music.uri)}
+                handlePlay={handlePlay}
               />
             ))}
           </MotionGrid>
@@ -92,7 +95,12 @@ const Playlist = () => {
         }}
       />
       {isAuthenticated && !isEmpty && (
-        <Box pos="fixed" bottom={18} right={18}>
+        <Box
+          pos="fixed"
+          bottom={{ base: "110px", lg: "60px" }}
+          right={18}
+          zIndex="modal"
+        >
           <Button
             leftIcon={<FaPlusCircle />}
             onClick={() => {

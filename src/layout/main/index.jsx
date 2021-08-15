@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/layout";
 const Main = ({ children, ...props }) => {
   return (
     <Flex
-      mb="80px"
+      mb={["180px", "180px", "120px"]}
       flex="1"
       flexDir="column"
       px={4}
