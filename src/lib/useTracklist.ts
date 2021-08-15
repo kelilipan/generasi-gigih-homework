@@ -1,6 +1,6 @@
 import config from "../site.config";
 import { useState } from "react";
-import { storeTracklist, clearList } from "../store/tracklist";
+import { storeTracklist } from "../store/tracklist";
 import { getSearchTrack, getTopTracks } from "./spotify";
 import { useAppDispatch, useAppSelector } from "./useRedux";
 import { useUser } from "./useUser";

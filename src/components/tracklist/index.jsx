@@ -48,7 +48,7 @@ const Playlist = () => {
     return () => {
       dispatch(clearList());
     };
-  }, [dispatch, isAuthenticated, accessToken]);
+  }, [dispatch, handleTopTracks, isAuthenticated, accessToken]);
   const containerVariant = {
     hidden: { opacity: 0 },
     show: {
