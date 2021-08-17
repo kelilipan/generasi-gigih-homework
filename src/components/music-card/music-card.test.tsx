@@ -102,6 +102,8 @@ const data: SpotifyApi.TrackObjectFull = {
 test("music card component to be rendered correctly", async () => {
   render(
     <MusicCard
+      isPlayed={false}
+      handlePlay={() => {}}
       data={data}
       isSelected={true}
       handleSelect={(uri) => {
@@ -123,6 +125,8 @@ test("music card component to be rendered correctly", async () => {
 test("select button is select current track", () => {
   render(
     <MusicCard
+      isPlayed={false}
+      handlePlay={() => {}}
       data={data}
       isSelected={true}
       handleSelect={(uri) => {

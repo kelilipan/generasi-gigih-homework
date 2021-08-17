@@ -1,17 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "test-utils";
 // import userEvent from "@testing-library/user-event";
-import App from "./App";
+import Index from "../../pages/home";
 
-test("render root correctly", () => {
-  render(<App />);
+test("render content correctly", () => {
+  render(<Index />);
   const title = screen.getByText("Lorem ipsum?");
   expect(title).toBeVisible();
 
   const sectionTitle = screen.getByText(/Maw maw maw/i);
   expect(sectionTitle).toBeVisible();
 
-  const loginButtons = screen.getAllByText("Login With Spotify");
-  expect(loginButtons).toHaveLength(2);
+  const loginButtons = screen.getByText(/Login With Spotify/i);
+  expect(loginButtons).toBeVisible();
 });
 
 // test("login button is redirect to spotify", () => {
