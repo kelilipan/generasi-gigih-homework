@@ -17,7 +17,7 @@ Object.defineProperty(window, "matchMedia", {
   },
 });
 
-describe("render create-playlist page content correctly", () => {
+describe("create-playlist page", () => {
   beforeEach(() => {
     render(<CreatePlaylist />, {
       preloadedState: { ...loggedIn, ...playlistTrackSelected },
