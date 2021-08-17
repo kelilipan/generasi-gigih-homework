@@ -100,15 +100,14 @@ const data: SpotifyApi.TrackObjectFull = {
 };
 
 test("music card component to be rendered correctly", async () => {
+  const handleSelect = jest.fn();
   render(
     <MusicCard
       isPlayed={false}
       handlePlay={() => {}}
       data={data}
       isSelected={true}
-      handleSelect={(uri) => {
-        console.log(uri);
-      }}
+      handleSelect={handleSelect}
     />
   );
 
@@ -123,21 +122,19 @@ test("music card component to be rendered correctly", async () => {
 });
 
 test("select button is select current track", () => {
+  const handleSelect = jest.fn();
   render(
     <MusicCard
       isPlayed={false}
       handlePlay={() => {}}
       data={data}
       isSelected={true}
-      handleSelect={(uri) => {
-        console.log(uri);
-      }}
+      handleSelect={handleSelect}
     />
   );
-  const consoleSpy = jest.spyOn(console, "log");
   const selectTrackButton = screen.getByText(/select/i);
   expect(selectTrackButton).toBeVisible();
 
   userEvent.click(selectTrackButton);
-  expect(consoleSpy).toHaveBeenCalledWith(data.uri);
+  expect(handleSelect).toHaveBeenCalledWith(data.uri);
 });
