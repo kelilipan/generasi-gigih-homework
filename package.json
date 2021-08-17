@@ -2,6 +2,10 @@
   "name": "generasi-gigih-homework",
   "version": "0.2.1",
   "private": true,
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  },
   "dependencies": {
     "@chakra-ui/react": "^1.6.5",
     "@craco/craco": "^6.2.0",
