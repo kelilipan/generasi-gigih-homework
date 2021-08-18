@@ -67,7 +67,7 @@ registerRoute(
   new CacheFirst({
     cacheName: "spotify-image-assets",
     plugins: [
-      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 24 * 60 * 60 }),
+      new ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 24 * 60 * 60 }),
     ],
   })
 );
