@@ -26,7 +26,7 @@ describe("create-playlist page", () => {
 
   it("should have title", () => {
     const title = screen.getByText("Select tracks");
-    expect(title).toBeVisible();
+    expect(title).toBeInTheDocument();
   });
 
   it("should have pagination button", () => {
