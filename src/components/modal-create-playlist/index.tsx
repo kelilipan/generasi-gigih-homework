@@ -11,7 +11,18 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import { FaSave } from "react-icons/fa";
-const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
+interface ModalPlaylistProps {
+  isOpen: boolean;
+  isLoading: boolean;
+  onClose: () => {};
+  createPlaylist: (payload: any) => {};
+}
+const ModalPlaylist = ({
+  isOpen,
+  onClose,
+  createPlaylist,
+  isLoading,
+}: ModalPlaylistProps) => {
   const [payload, setPayload] = useState({
     name: "",
     description: "",
@@ -19,13 +30,14 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
     collaborative: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (e) => {
     const { name, value } = e.target;
     setPayload({ ...payload, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
     createPlaylist(payload);
   };
   const bg = {
@@ -48,14 +60,14 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
         <ModalHeader>Create playlist</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <form id="createPlaylistForm" onSubmit={handleSubmit}>
+          <form id="createPlaylistForm">
             <div className={style.formControl}>
               <label htmlFor="name">Name</label>
               <input
                 id="name"
                 name="name"
                 placeholder="Input playlist name"
-                minLength="10"
+                minLength={10}
                 onChange={handleChange}
               />
             </div>
@@ -66,7 +78,7 @@ const ModalPlaylist = ({ isOpen, onClose, createPlaylist, isLoading }) => {
                 id="description"
                 name="description"
                 placeholder="Input playlist description"
-                minLength="20"
+                minLength={20}
                 onChange={handleChange}
               />
             </div>
