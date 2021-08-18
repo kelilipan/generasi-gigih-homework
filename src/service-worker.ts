@@ -63,6 +63,16 @@ registerRoute(
 );
 
 registerRoute(
+  /^https:\/\/i\.scdn\.co\/image\//,
+  new StaleWhileRevalidate({
+    cacheName: "spotify-image-assets",
+    plugins: [
+      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 24 * 60 * 60 }),
+    ],
+  })
+);
+
+registerRoute(
   /\.(?:js)$/i,
   new StaleWhileRevalidate({
     cacheName: "static-js-assets",
