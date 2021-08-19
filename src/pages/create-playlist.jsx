@@ -1,4 +1,4 @@
-import { Heading, Stack } from "@chakra-ui/react";
+import { Flex, Heading, Link } from "@chakra-ui/react";
 import Pagination from "../components/pagination";
 import Player from "../components/player";
 import Tracklist from "../components/tracklist";
@@ -26,14 +26,21 @@ const Index = () => {
   return (
     <>
       <Main>
-        <Stack
+        <Flex
           my={[2, 4]}
           direction={["column", "row"]}
-          justifyContent="space-between"
+          alignItems={["flex-start", "center"]}
         >
-          <Heading m="0" fontSize="4xl">
+          <Heading m="0" mr="2" fontSize={["3xl", "4xl"]}>
             Select tracks
           </Heading>
+          <Link
+            fontSize="sm"
+            href="#top-tracks"
+            onClick={() => handleTopTracks(1)}
+          >
+            (Show top tracks)
+          </Link>
           {isTrackEmpty && (
             <Pagination
               ml="auto"
@@ -42,7 +49,7 @@ const Index = () => {
               handleChangePage={handlePagination}
             />
           )}
-        </Stack>
+        </Flex>
         <Tracklist />
         {isTrackEmpty && (
           <Pagination
