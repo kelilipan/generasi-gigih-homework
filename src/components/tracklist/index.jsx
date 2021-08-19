@@ -56,7 +56,7 @@ const Playlist = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
     exit: { opacity: 0, transition: { duration: 0.1 } },
