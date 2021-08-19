@@ -55,7 +55,7 @@ const MusicCard = ({
       }}
     >
       <Flex boxSize={["80px", "125px"]} pos="relative">
-        <Box onClick={() => handlePlay(uri)}>
+        <Box cursor="pointer" onClick={() => handlePlay(uri)}>
           <Image
             data-testid="album-cover"
             _groupHover={{ opacity: 0.7 }}
