@@ -4,13 +4,14 @@ import { getProfile } from "../lib/spotify";
 import { useUser } from "../lib/useUser";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Header from "../components/home-header";
-import Feature from "../components/home-feature";
+
 import { useHistory } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Button, Heading, Link, Text } from "@chakra-ui/react";
+import { FaSpotify } from "react-icons/fa";
 
 const Home = () => {
-  const { isAuthenticated, callback } = useUser();
+  const { isAuthenticated, callback, redirect } = useUser();
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -41,10 +42,34 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
   return (
-    <Main>
-      <Header />
-      <Feature />
-    </Main>
+    <>
+      <Main justifyContent="center" alignItems="center">
+        <Heading as="h1" fontSize={["4xl", "5xl"]}>
+          Hello there,
+        </Heading>
+        <Text>Please login first before accessing the app.</Text>
+        <Button
+          mt="4"
+          onClick={() => redirect()}
+          leftIcon={<FaSpotify fontSize="20px" />}
+        >
+          Login With Spotify
+        </Button>
+      </Main>
+      <Text
+        color="whiteAlpha.700"
+        textAlign="center"
+        p={4}
+        fontSize="sm"
+        fontStyle="italic"
+      >
+        Made with ♥ by{" "}
+        <Link href="https://www.wisesa.dev" isExternal>
+          wisesa
+        </Link>
+        .
+      </Text>
+    </>
   );
 };
 
