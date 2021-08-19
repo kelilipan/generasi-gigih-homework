@@ -76,6 +76,19 @@ registerRoute(
 );
 
 registerRoute(
+  /.(woff|woff2)$/,
+  new CacheFirst({
+    cacheName: "static-fonts",
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 2,
+        maxAgeSeconds: 24 * 60 * 60 * 365, //365days
+      }),
+    ],
+  })
+);
+
+registerRoute(
   /\.(?:js)$/i,
   new StaleWhileRevalidate({
     cacheName: "static-js-assets",
