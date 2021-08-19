@@ -1,6 +1,6 @@
-import { Flex } from "@chakra-ui/layout";
+import { Flex, FlexProps } from "@chakra-ui/layout";
 
-const Main = ({ children, ...props }) => {
+const Main = ({ children, ...props }: FlexProps) => {
   return (
     <Flex
       mb={["180px", "180px", "120px"]}
