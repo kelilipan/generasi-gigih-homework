@@ -1,6 +1,6 @@
 import Navbar from "components/navbar";
-import { render, screen } from "test-utils";
-import loggedIn from "test/dummy/logged-in";
+import { render, screen } from "test/utils";
+import user from "test/dummy/user";
 
 describe("navbar component", () => {
   it("should have login button", () => {
@@ -10,7 +10,7 @@ describe("navbar component", () => {
   });
   //if logged in
   it("should have search component", () => {
-    render(<Navbar />, { preloadedState: loggedIn });
+    render(<Navbar />, { preloadedState: { user } });
     const searchButton = screen.getByRole("button", { name: /search song/i });
     expect(searchButton).toBeVisible();
     const searchInput = screen.getByPlaceholderText("Input song name");
@@ -18,8 +18,8 @@ describe("navbar component", () => {
   });
 
   it("should have profile", () => {
-    render(<Navbar />, { preloadedState: loggedIn });
-    const profile = screen.getByRole("img", { name: "Wisesa" });
+    render(<Navbar />, { preloadedState: { user } });
+    const profile = screen.getByRole("img", { name: user.data.display_name });
     expect(profile).toBeVisible();
   });
 });
