@@ -1,6 +1,6 @@
 import Navbar from "components/navbar";
 import { render, screen } from "test-utils";
-import loggedIn from "__test__/pages/dummy/logged-in";
+import loggedIn from "test/dummy/logged-in";
 
 describe("navbar component", () => {
   it("should have login button", () => {

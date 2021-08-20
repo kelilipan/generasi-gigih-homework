@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 // Import your own reducer
-import user from "./store/user";
-import playlist from "./store/playlist";
-import tracks from "./store/tracklist";
-import playback from "./store/playback";
+import user from "store/user";
+import playlist from "store/playlist";
+import tracks from "store/tracklist";
+import playback from "store/playback";
 
 const render = (
   ui,

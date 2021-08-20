@@ -1,7 +1,8 @@
-import { render, screen } from "test-utils";
-import CreatePlaylist from "../../pages/create-playlist";
-import loggedIn from "./dummy/logged-in";
-import playlistTrackSelected from "./dummy/playlist-track-selected";
+import { render, screen } from "test/utils";
+import CreatePlaylist from "pages/create-playlist";
+import user from "test/dummy/user";
+import tracks from "test/dummy/tracks";
+import playlist from "test/dummy/playlist";
 
 //mock player component
 jest.mock("../../components/player/index", () => () => "PlayerComponent");
@@ -20,7 +21,14 @@ Object.defineProperty(window, "matchMedia", {
 describe("create-playlist page", () => {
   beforeEach(() => {
     render(<CreatePlaylist />, {
-      preloadedState: { ...loggedIn, ...playlistTrackSelected },
+      preloadedState: {
+        user,
+        tracks,
+        playlist,
+        playback: {
+          play: false,
+        },
+      },
     });
   });
 
@@ -40,9 +48,7 @@ describe("create-playlist page", () => {
 
   it("should render a music card", () => {
     const selectTrackButton = screen.getAllByText("Selected");
-    expect(selectTrackButton).toHaveLength(
-      playlistTrackSelected.playlist.uris.length
-    );
+    expect(selectTrackButton).toHaveLength(playlist.uris.length);
   });
 
   it("should render create playlist button", () => {
