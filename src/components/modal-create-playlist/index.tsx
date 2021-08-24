@@ -37,7 +37,8 @@ const ModalPlaylist = ({
     setPayload({ ...payload, [name]: value });
   };
 
-  const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
     createPlaylist(payload);
   };
   const bg = {
@@ -60,10 +61,11 @@ const ModalPlaylist = ({
         <ModalHeader>Create playlist</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <form id="createPlaylistForm">
+          <form id="createPlaylistForm" onSubmit={handleSubmit}>
             <div className={style.formControl}>
               <label htmlFor="name">Name</label>
               <input
+                required
                 id="name"
                 name="name"
                 placeholder="Input playlist name"
@@ -74,6 +76,7 @@ const ModalPlaylist = ({
             <div className={style.formControl}>
               <label htmlFor="description">Description</label>
               <textarea
+                required
                 rows={5}
                 id="description"
                 name="description"
@@ -87,7 +90,8 @@ const ModalPlaylist = ({
 
         <ModalFooter>
           <Button
-            onClick={handleSubmit}
+            type="submit"
+            form="createPlaylistForm"
             isLoading={isLoading}
             loadingText="Saving"
             leftIcon={<FaSave />}
