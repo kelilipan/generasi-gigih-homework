@@ -57,6 +57,7 @@ const MusicCard = ({
       <Flex boxSize={["80px", "125px"]} pos="relative">
         <Box cursor="pointer" onClick={() => handlePlay(uri)}>
           <Image
+            crossOrigin="anonymous"
             data-testid="album-cover"
             _groupHover={{ opacity: 0.7 }}
             fallbackSrc="https://via.placeholder.com/150?text=Loading..."
